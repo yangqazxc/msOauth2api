@@ -474,7 +474,7 @@
         <ul>
             <li><a href="#" data-target="dashboard" class="active"><i class="fas fa-tachometer-alt"></i>仪表盘</a></li>
             <li><a href="#" data-target="emails"><i class="fas fa-envelope"></i>邮箱管理</a></li>
-            <li><a href="https://www.nineemail.com" target="_blank"><i class="fa-solid fa-cart-shopping"></i>购买邮箱</a></li>
+            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i class="fa-solid fa-cart-shopping"></i>购买邮箱</a></li>
         </ul>
     </div>
 
@@ -968,6 +968,21 @@
 
         // 页面加载时加载数据
         window.onload = loadData;
+
+        // 购买邮箱
+        document.addEventListener('DOMContentLoaded', function() {
+        const sidebarLinks = document.querySelectorAll('.sidebar a:not(.external-link)');
+        
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 移除所有链接的active类
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                // 为当前点击的链接添加active类
+                this.classList.add('active');
+            });
+        });
+    });
     </script>
 
 </body>
