@@ -474,7 +474,7 @@
         <ul>
             <li><a href="#" data-target="dashboard" class="active"><i class="fas fa-tachometer-alt"></i>仪表盘</a></li>
             <li><a href="#" data-target="emails"><i class="fas fa-envelope"></i>邮箱管理</a></li>
-            <li><a href="https://www.nineemail.com" target="_blank"><i class="fa-solid fa-cart-shopping"></i>购买邮箱</a></li>
+            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i class="fa-solid fa-cart-shopping"></i>购买邮箱</a></li>
         </ul>
     </div>
 
@@ -586,45 +586,20 @@
         }
 
         // 获取所有侧边栏链接和内容区域
-        const links = document.querySelectorAll('.sidebar ul li a');
+        // const links = document.querySelectorAll('.sidebar ul li a');
+        const links = document.querySelectorAll('.sidebar a:not(.external-link)');
         const contentSections = document.querySelectorAll('.content-section');
-
-        // // 监听侧边栏链接的点击事件
-        // links.forEach(link => {
-        //     link.addEventListener('click', (e) => {
-        //         e.preventDefault(); // 阻止默认跳转行为
-
-        //         // 移除所有链接的选中状态
-        //         links.forEach(l => l.classList.remove('active'));
-        //         // 为当前点击的链接添加选中状态
-        //         link.classList.add('active');
-
-        //         // 获取目标内容区域的ID
-        //         const targetId = link.getAttribute('data-target');
-        //         // 隐藏所有内容区域
-        //         contentSections.forEach(section => section.classList.remove('active'));
-        //         // 显示目标内容区域
-        //         document.getElementById(targetId).classList.add('active');
-        //     });
-        // });
 
         // 监听侧边栏链接的点击事件
         links.forEach(link => {
             link.addEventListener('click', (e) => {
-                // 检查是否是购买邮箱链接
-                if (link.getAttribute('href') === 'https://www.nineemail.com') {
-                    // 是购买邮箱链接，不阻止默认行为，允许正常跳转
-                    return;
-                }
-        
-                // 不是购买邮箱链接，执行原有逻辑
                 e.preventDefault(); // 阻止默认跳转行为
-        
+
                 // 移除所有链接的选中状态
                 links.forEach(l => l.classList.remove('active'));
                 // 为当前点击的链接添加选中状态
                 link.classList.add('active');
-        
+
                 // 获取目标内容区域的ID
                 const targetId = link.getAttribute('data-target');
                 // 隐藏所有内容区域
