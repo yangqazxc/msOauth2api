@@ -586,7 +586,8 @@
         }
 
         // 获取所有侧边栏链接和内容区域
-        const links = document.querySelectorAll('.sidebar ul li a');
+        // const links = document.querySelectorAll('.sidebar ul li a');
+        const links = document.querySelectorAll('.sidebar a:not(.external-link)');
         const contentSections = document.querySelectorAll('.content-section');
 
         // 监听侧边栏链接的点击事件
@@ -968,9 +969,6 @@
 
         // 页面加载时加载数据
         window.onload = loadData;
-
-
-        
 
         // 购买邮箱
         document.addEventListener('DOMContentLoaded', function() {
