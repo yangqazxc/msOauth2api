@@ -968,6 +968,24 @@
 
         // 页面加载时加载数据
         window.onload = loadData;
+
+
+        
+
+        // 购买邮箱
+        document.addEventListener('DOMContentLoaded', function() {
+        const sidebarLinks = document.querySelectorAll('.sidebar a:not(.external-link)');
+        
+        sidebarLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 移除所有链接的active类
+                sidebarLinks.forEach(l => l.classList.remove('active'));
+                // 为当前点击的链接添加active类
+                this.classList.add('active');
+            });
+        });
+    });
     </script>
 
 </body>
