@@ -16,75 +16,83 @@
         }
 
         /* 侧边栏样式 */
-        .sidebar {
-            width: 250px;
-            background-color: #ffffff;
-            color: #2c3e50;
-            height: 100vh;
-            padding: 20px;
-            box-sizing: border-box;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-        }
+        /* 侧边栏样式 */
+.sidebar {
+    width: 280px;
+    background-color: #ffffff;
+    color: #444;
+    height: 100vh;
+    padding: 24px;
+    box-sizing: border-box;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+}
 
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 24px;
-            color: #3498db;
-        }
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 20px;
+    color: #2563eb;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+}
 
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
-        }
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
 
-        .sidebar ul li {
-            margin: 10px 0;
-        }
+.sidebar ul li {
+    margin: 8px 0;
+}
 
-        .sidebar ul li a {
-            color: #2c3e50;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
+.sidebar ul li a {
+    color: #444;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
 
-        .sidebar ul li a:hover {
-            background-color: #3498db;
-            color: #ffffff;
-            transform: translateX(5px);
-        }
+.sidebar ul li a:hover {
+    background-color: #f8faff;
+    color: #2563eb;
+    transform: translateX(4px);
+}
 
-        .sidebar ul li a.active {
-            background-color: #3498db;
-            color: #ffffff;
-            font-weight: bold;
-        }
+.sidebar ul li a.active {
+    background-color: #f0f5ff;
+    color: #2563eb;
+    font-weight: 500;
+}
 
-        .sidebar ul li a i {
-            margin-right: 10px;
-            font-size: 18px;
-        }
+.sidebar ul li a i {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
 
         /* 内容区域样式 */
         .content {
-            flex-grow: 1;
-            padding: 30px;
-            background-color: #f5f6fa;
-        }
+    flex-grow: 1;
+    padding: 32px;
+    background-color: #fafafa;
+}
 
-        .content h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
+.content h1 {
+    color: #333;
+    margin-bottom: 24px;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
 
-        .content p {
-            color: #7f8c8d;
-            line-height: 1.6;
-        }
+.content p {
+    color: #666;
+    line-height: 1.7;
+}
 
         /* 内容区域隐藏/显示 */
         .content-section {
@@ -97,215 +105,297 @@
         }
 
         /* 仪表盘统计卡片样式 */
-        .dashboard-cards {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
+.dashboard .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+}
 
-        .dashboard-card {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            flex: 1;
-            text-align: center;
-        }
+.dashboard-card {
+    background-color: #ffffff;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    position: relative;
+    overflow: hidden;
+}
 
-        .dashboard-card h3 {
-            margin: 0;
-            font-size: 18px;
-            color: #2c3e50;
-        }
+.dashboard-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
 
-        .dashboard-card p {
-            margin: 10px 0 0;
-            font-size: 24px;
-            color: #3498db;
-            font-weight: bold;
-        }
+.dashboard-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+}
 
+.dashboard-card:hover::before {
+    opacity: 1;
+}
+
+.dashboard-card h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #666;
+    font-weight: 400;
+}
+
+.dashboard-card p {
+    margin: 16px 0 0;
+    font-size: 32px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
         /* 上传区域样式 */
-        .upload-section {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
+ .upload-section {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+    margin-bottom: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
 
-        .upload-section .upload-box {
-            border: 2px dashed #3498db;
-            border-radius: 8px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.upload-section .upload-box {
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
 
-        .upload-section .upload-box.dragover {
-            background-color: #f0f8ff;
-            border-color: #2980b9;
-        }
+.upload-section .upload-box.dragover {
+    background-color: #f8faff;
+    border-color: #2563eb;
+}
 
-        .upload-section .upload-box i {
-            font-size: 24px;
-            color: #3498db;
-            margin-bottom: 10px;
-        }
+.upload-section .upload-box i {
+    font-size: 32px;
+    color: #2563eb;
+    margin-bottom: 16px;
+}
 
-        .upload-section .upload-box p {
-            margin: 0;
-            color: #7f8c8d;
-        }
+.upload-section .upload-box p {
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+}
 
-        .upload-section .upload-box .file-info {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #3498db;
-        }
+.upload-section .upload-box .file-info {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #2563eb;
+}
 
-        .upload-section .upload-box input[type="file"] {
-            display: none;
-        }
+.upload-section .delimiter-input {
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
 
-        .upload-section .delimiter-input {
-            margin-top: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+.upload-section .delimiter-input input[type="text"] {
+    padding: 12px 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    width: 200px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    background-color: #f9fafb;
+}
 
-        .upload-section .delimiter-input input[type="text"] {
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            margin-right: 10px;
-            width: 200px;
-        }
+.upload-section .delimiter-input input[type="text"]:focus {
+    border-color: #2563eb;
+    outline: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
 
-        .upload-section .delimiter-input button {
-            padding: 8px 16px;
-            background-color: #3498db;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.upload-section .delimiter-input button {
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+}
 
-        .upload-section .delimiter-input button:hover {
-            background-color: #2980b9;
-        }
+.upload-section .delimiter-input button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+
+/* Loading 样式 */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.loading-spinner {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #2563eb;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 0.8s linear infinite;
+}
 
         /* 表格样式 */
-        .email-table,
-        .mail-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+ .email-table,
+.mail-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
 
-        .email-table th,
-        .email-table td,
-        .mail-table th,
-        .mail-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-            color: #333;
-        }
+.email-table th,
+.email-table td,
+.mail-table th,
+.mail-table td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+    font-size: 14px;
+    color: #444;
+}
 
-        .email-table th,
-        .mail-table th {
-            background-color: #3498db;
-            color: #ffffff;
-            font-weight: bold;
-        }
+.email-table th,
+.mail-table th {
+    background-color: #f8faff;
+    color: #2563eb;
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+}
 
-        .email-table tr:hover,
-        .mail-table tr:hover {
-            background-color: #f9f9f9;
-        }
+.email-table tr:hover,
+.mail-table tr:hover {
+    background-color: #f8faff;
+}
 
-        .email-table td,
-        .mail-table td {
-            word-wrap: break-word;
-        }
+.email-table td,
+.mail-table td {
+    word-wrap: break-word;
+    transition: all 0.3s ease;
+}
 
-        .email-table .refresh-token {
-            max-width: 150px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
+.email-table .refresh-token {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+    background: #f8faff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+}
 
-        .email-table .actions,
-        .mail-table .actions {
-            white-space: nowrap;
-        }
+.email-table .actions,
+.mail-table .actions {
+    white-space: nowrap;
+    text-align: right;
+}
 
-        .email-table .actions button,
-        .mail-table .actions button {
-            padding: 6px 12px;
-            margin-right: 5px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: background-color 0.3s ease;
-        }
+.email-table .actions button,
+.mail-table .actions button {
+    padding: 8px 16px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
 
-        .email-table .actions button.view,
-        .mail-table .actions button.view {
-            background-color: #3498db;
-            color: #ffffff;
-        }
+.email-table .actions button.view,
+.mail-table .actions button.view {
+    background-color: #f0f5ff;
+    color: #2563eb;
+}
 
-        .email-table .actions button.delete,
-        .mail-table .actions button.delete {
-            background-color: #e74c3c;
-            color: #ffffff;
-        }
+.email-table .actions button.delete,
+.mail-table .actions button.delete {
+    background-color: #fef2f2;
+    color: #dc2626;
+}
 
-        .email-table .actions button:hover,
-        .mail-table .actions button:hover {
-            opacity: 0.9;
-        }
+.email-table .actions button:hover,
+.mail-table .actions button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
         /* 分页样式 */
-        .pagination {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.pagination {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
 
-        .pagination button {
-            padding: 6px 12px;
-            margin: 0 5px;
-            border: 1px solid #3498db;
-            border-radius: 4px;
-            background-color: #ffffff;
-            color: #3498db;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.pagination button {
+    padding: 10px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    background-color: #ffffff;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
 
-        .pagination button.active {
-            background-color: #3498db;
-            color: #ffffff;
-        }
+.pagination button.active {
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    color: #ffffff;
+    border: none;
+}
 
-        .pagination button:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
+.pagination button:hover:not(.active) {
+    background-color: #f8faff;
+    color: #2563eb;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
 
         /* 无数据提示 */
         .no-data {
@@ -316,50 +406,60 @@
         }
 
         /* 模态框样式 */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
+ .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(4px);
+}
 
-        .modal-content {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
+.modal-content {
+    background-color: #ffffff;
+    padding: 32px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    max-width: 480px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+}
 
-        .modal-content h3 {
-            margin-top: 0;
-            color: #2c3e50;
-        }
+.modal-content h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 20px;
+    font-weight: 500;
+}
 
-        .modal-content p {
-            color: #7f8c8d;
-        }
+.modal-content p {
+    color: #666;
+    line-height: 1.7;
+}
 
-        .modal-content button {
-            padding: 8px 16px;
-            background-color: #3498db;
-            color: #ffffff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+.modal-content button {
+    padding: 12px 24px;
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+    margin-top: 24px;
+}
 
-        .modal-content button:hover {
-            background-color: #2980b9;
-        }
+.modal-content button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
 
         /* 邮件详情模态框样式 */
         .mail-modal {
@@ -437,27 +537,25 @@
             animation: spin 1s linear infinite;
         }
 
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* 淡入动画 */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.content-section {
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
         .email-handel {
             display: flex;
             align-items: center;
@@ -521,9 +619,9 @@
     <div class="sidebar">
         <h2>邮箱系统</h2>
         <ul>
-            <li><a href="#" data-target="dashboard" class="active"><i class="fas fa-tachometer-alt"></i>仪表盘</a></li>
-            <li><a href="#" data-target="emails"><i class="fas fa-envelope"></i>邮箱管理</a></li>
-            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i class="fa-solid fa-cart-shopping"></i>购买邮箱</a></li>
+            <li><a href="#" data-target="dashboard" class="active"><i class="fa-regular fa-font-awesome"></i>仪表盘</a></li>
+            <li><a href="#" data-target="emails"><i class="fa-regular fa-clipboard"></i>邮箱管理</a></li>
+            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i class="fa-regular fa-chess-queen"></i>购买邮箱</a></li>
         </ul>
     </div>
 
@@ -550,7 +648,7 @@
                     <input type="file" id="file-input" accept=".txt">
                 </div>
                 <div class="delimiter-input">
-                    <input type="text" id="delimiter" placeholder="输入分隔符（如 ----）">
+                    <input type="text" id="delimiter" value="----" placeholder="输入分隔符（如 ----）">
                     <button onclick="importEmails()">导入邮箱</button>
                     <button class="delete-btn" onclick="batchDelete()">批量删除</button>
                 </div>
@@ -1097,19 +1195,19 @@
         window.onload = loadData;
 
         // 购买邮箱
-        document.addEventListener('DOMContentLoaded', function() {
-        const sidebarLinks = document.querySelectorAll('.sidebar a:not(.external-link)');
-        
-        sidebarLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                // 移除所有链接的active类
-                sidebarLinks.forEach(l => l.classList.remove('active'));
-                // 为当前点击的链接添加active类
-                this.classList.add('active');
+        document.addEventListener('DOMContentLoaded', function () {
+            const sidebarLinks = document.querySelectorAll('.sidebar a:not(.external-link)');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    // 移除所有链接的active类
+                    sidebarLinks.forEach(l => l.classList.remove('active'));
+                    // 为当前点击的链接添加active类
+                    this.classList.add('active');
+                });
             });
         });
-    });
 
     </script>
 
