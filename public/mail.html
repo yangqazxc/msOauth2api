@@ -87,6 +87,21 @@
     font-weight: 500;
     font-size: 16px;
     letter-spacing: -0.5px;
+    /* 新增的样式 */
+    position: relative;
+    padding-left: 12px; /* 根据你的需求调整左边距 */
+}
+
+.content h1::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px; /* 竖线宽度 */
+    height: 16px; /* 和字体大小相同 */
+    background-color: #2563ebe3; /* 使用和文字相同的颜色 */
+    border-radius: 1.5px; /* 可选：让竖线两端变圆 */
 }
 
 .content p {
@@ -632,7 +647,7 @@
     <div class="content">
         <!-- 仪表盘内容 -->
         <div id="dashboard" class="content-section">
-            <h1>▎仪表盘</h1>
+            <h1>仪表盘</h1>
             <div class="dashboard-cards">
                 <div class="dashboard-card">
                     <h3>账号数量</h3>
@@ -643,7 +658,7 @@
 
         <!-- 邮箱管理内容 -->
         <div id="emails" class="content-section active">
-            <h1>▎邮箱管理</h1>
+            <h1>邮箱管理</h1>
             <div class="upload-section">
                 <div class="upload-box" id="upload-box">
                     <i class="fas fa-cloud-upload-alt"></i>
