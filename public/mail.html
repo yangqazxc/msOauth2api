@@ -18,8 +18,14 @@
 
         /* 侧边栏样式 */
         /* 侧边栏样式 */
+.container {
+    display: flex; /* 使用flex布局 */
+}
+.content {
+    flex: 1; /* 主内容区域占据剩余空间 */
+    padding: 24px; /* 添加内边距 */
+}
 .sidebar {
-    position: fixed; /* 固定侧边栏 */
     width: 220px;
     background-color: #ffffff;
     color: #444;
