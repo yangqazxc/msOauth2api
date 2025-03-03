@@ -1207,6 +1207,8 @@ function importEmails() {
         let importedCount = 0; // 用于计算实际导入的数量
         // 解析每一行
         lines.forEach(line => {
+            if (!line.trim()) return; // 跳过空行
+            
             const fields = line.split(delimiter); // 按用户输入的分隔符分割
             if (fields.length >= 4) { // 确保有 4 个字段
                 const email = fields[0].trim();
