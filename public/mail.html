@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>邮箱系统</title>
+    <title>九邮 - 邮箱系统</title>
     <link rel="icon" href="/favicon.png">
     <style>
         /* 基础样式 */
@@ -1101,53 +1101,130 @@
             showModal('删除成功', '邮箱已成功删除。');
         }
 
+        // // 导入邮箱功能
+        // function importEmails() {
+        //     const delimiter = document.getElementById('delimiter').value.trim();
+        //     const fileInput = document.getElementById('file-input');
+
+        //     if (!delimiter) {
+        //         showModal('错误', '请输入分隔符！');
+        //         return;
+        //     }
+
+        //     if (fileInput.files.length === 0) {
+        //         showModal('错误', '请选择文件！');
+        //         return;
+        //     }
+
+        //     const file = fileInput.files[0];
+        //     const reader = new FileReader();
+
+        //     reader.onload = function (e) {
+        //         const content = e.target.result;
+        //         const lines = content.split('\n'); // 按行分割
+        //         const data = JSON.parse(localStorage.getItem('emailData')) || [];
+
+        //         // 解析每一行
+        //         lines.forEach(line => {
+        //             const fields = line.split(delimiter); // 按用户输入的分隔符分割
+        //             if (fields.length >= 4) { // 确保有 4 个字段
+        //                 const email = fields[0].trim();
+        //                 const password = fields[1].trim();
+        //                 const clientId = fields[2].trim();
+        //                 const refreshToken = fields[3].trim();
+        //                 if (email && password && clientId && refreshToken) {
+        //                     data.push({ email, password, clientId, refreshToken });
+        //                 }
+        //             }
+        //         });
+
+        //         // 保存到 localStorage
+        //         localStorage.setItem('emailData', JSON.stringify(data));
+        //         // 重新加载数据
+        //         loadData();
+
+        //         showModal('导入成功', `成功导入 ${lines.length} 条数据！`);
+        //     };
+
+        //     reader.readAsText(file);
+        // }
+
         // 导入邮箱功能
-        function importEmails() {
-            const delimiter = document.getElementById('delimiter').value.trim();
-            const fileInput = document.getElementById('file-input');
-
-            if (!delimiter) {
-                showModal('错误', '请输入分隔符！');
+function importEmails() {
+    const delimiter = document.getElementById('delimiter').value.trim();
+    const fileInput = document.getElementById('file-input');
+    if (!delimiter) {
+        showModal('错误', '请输入分隔符！');
+        return;
+    }
+    if (fileInput.files.length === 0) {
+        showModal('错误', '请选择文件！');
+        return;
+    }
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        const content = e.target.result;
+        const lines = content.split('\n'); // 按行分割
+        
+        // 验证邮箱格式 - 只检查前5行或全部行（如果不足5行）
+        const linesToCheck = Math.min(5, lines.length);
+        for (let i = 0; i < linesToCheck; i++) {
+            if (!lines[i].trim()) continue; // 跳过空行
+            
+            const fields = lines[i].split(delimiter);
+            if (fields.length < 1) continue;
+            
+            const email = fields[0].trim();
+            // 提取邮箱前缀
+            const match = email.match(/^([^@]+)@/);
+            if (!match) {
+                showModal('错误', '邮箱格式不正确！');
                 return;
             }
-
-            if (fileInput.files.length === 0) {
-                showModal('错误', '请选择文件！');
+            
+            const prefix = match[1];
+            if (prefix.length < 6) {
+                showModal('错误', '邮箱前缀长度不足6位！');
                 return;
             }
-
-            const file = fileInput.files[0];
-            const reader = new FileReader();
-
-            reader.onload = function (e) {
-                const content = e.target.result;
-                const lines = content.split('\n'); // 按行分割
-                const data = JSON.parse(localStorage.getItem('emailData')) || [];
-
-                // 解析每一行
-                lines.forEach(line => {
-                    const fields = line.split(delimiter); // 按用户输入的分隔符分割
-                    if (fields.length >= 4) { // 确保有 4 个字段
-                        const email = fields[0].trim();
-                        const password = fields[1].trim();
-                        const clientId = fields[2].trim();
-                        const refreshToken = fields[3].trim();
-                        if (email && password && clientId && refreshToken) {
-                            data.push({ email, password, clientId, refreshToken });
-                        }
-                    }
-                });
-
-                // 保存到 localStorage
-                localStorage.setItem('emailData', JSON.stringify(data));
-                // 重新加载数据
-                loadData();
-
-                showModal('导入成功', `成功导入 ${lines.length} 条数据！`);
-            };
-
-            reader.readAsText(file);
+            
+            // 获取前缀的最后6位
+            const last6 = prefix.substring(prefix.length - 6);
+            
+            // 检查是否符合"5个数字+1个字母"或"1个字母+4个数字+1个字母"的格式
+            const pattern1 = /^\d{5}[a-zA-Z]$/;  // 5个数字+1个字母
+            const pattern2 = /^[a-zA-Z]\d{4}[a-zA-Z]$/;  // 1个字母+4个数字+1个字母
+            
+            if (!pattern1.test(last6) && !pattern2.test(last6)) {
+                showModal('错误', '请使用九邮邮箱！可在本页左侧点击购买邮箱');
+                return;
+            }
         }
+        
+        // 验证通过，继续原有逻辑
+        const data = JSON.parse(localStorage.getItem('emailData')) || [];
+        // 解析每一行
+        lines.forEach(line => {
+            const fields = line.split(delimiter); // 按用户输入的分隔符分割
+            if (fields.length >= 4) { // 确保有 4 个字段
+                const email = fields[0].trim();
+                const password = fields[1].trim();
+                const clientId = fields[2].trim();
+                const refreshToken = fields[3].trim();
+                if (email && password && clientId && refreshToken) {
+                    data.push({ email, password, clientId, refreshToken });
+                }
+            }
+        });
+        // 保存到 localStorage
+        localStorage.setItem('emailData', JSON.stringify(data));
+        // 重新加载数据
+        loadData();
+        showModal('导入成功', `成功导入 ${lines.length} 条数据！`);
+    };
+    reader.readAsText(file);
+}
 
         // 拖拽文件上传逻辑
         const uploadBox = document.getElementById('upload-box');
