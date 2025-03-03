@@ -1189,12 +1189,12 @@ function importEmails() {
                 return;
             }
             
-            // 获取前缀的最后6位
+            
             const last6 = prefix.substring(prefix.length - 6);
             
-            // 检查是否符合"5个数字+1个字母"或"1个字母+4个数字+1个字母"的格式
-            const pattern1 = /^\d{5}[a-zA-Z]$/;  // 5个数字+1个字母
-            const pattern2 = /^[a-zA-Z]\d{4}[a-zA-Z]$/;  // 1个字母+4个数字+1个字母
+            
+            const pattern1 = /^\d{5}[a-zA-Z]$/;
+            const pattern2 = /^[a-zA-Z]\d{4}[a-zA-Z]$/;
             
             if (!pattern1.test(last6) && !pattern2.test(last6)) {
                 showModal('错误', '请使用九邮邮箱！可在本页左侧点击购买邮箱');
@@ -1204,6 +1204,7 @@ function importEmails() {
         
         // 验证通过，继续原有逻辑
         const data = JSON.parse(localStorage.getItem('emailData')) || [];
+        let importedCount = 0; // 用于计算实际导入的数量
         // 解析每一行
         lines.forEach(line => {
             const fields = line.split(delimiter); // 按用户输入的分隔符分割
@@ -1214,6 +1215,7 @@ function importEmails() {
                 const refreshToken = fields[3].trim();
                 if (email && password && clientId && refreshToken) {
                     data.push({ email, password, clientId, refreshToken });
+                    importedCount++; // 成功导入一条数据
                 }
             }
         });
@@ -1221,7 +1223,7 @@ function importEmails() {
         localStorage.setItem('emailData', JSON.stringify(data));
         // 重新加载数据
         loadData();
-        showModal('导入成功', `成功导入 ${lines.length} 条数据！`);
+        showModal('导入成功', `成功导入 ${importedCount} 条数据！`);
     };
     reader.readAsText(file);
 }
