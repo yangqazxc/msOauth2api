@@ -18,13 +18,6 @@
 
         /* 侧边栏样式 */
         /* 侧边栏样式 */
-.container {
-    display: flex; /* 使用flex布局 */
-}
-.content {
-    flex: 1; /* 主内容区域占据剩余空间 */
-    padding: 24px; /* 添加内边距 */
-}
 .sidebar {
     width: 220px;
     background-color: #ffffff;
@@ -33,6 +26,9 @@
     padding: 24px;
     box-sizing: border-box;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+    position: sticky; /* 粘性定位 */
+    top: 0; /* 距离顶部0px时开始固定 */
+    overflow-y: auto; /* 如果侧边栏内容过多，允许滚动 */
 }
 
 .sidebar h2 {
