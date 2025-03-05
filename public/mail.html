@@ -7,6 +7,18 @@
     <title>九邮 - 邮箱系统</title>
     <link rel="icon" href="/favicon.png">
     <style>
+        /* 页面整体缩放方案 */
+    html {
+        /* 将整个页面缩放为原始大小的90% */
+        transform: scale(0.9);
+        transform-origin: top center;
+        /* 提供一个容器以适应缩小后的内容 */
+        width: 111.11%; /* 100% ÷ 0.9 = 111.11% */
+        height: 111.11%;
+        /* 消除可能的水平滚动条 */
+        overflow-x: hidden;
+    }
+    
         /* 基础样式 */
         body {
             font-family: Arial, sans-serif;
@@ -14,104 +26,116 @@
             padding: 0;
             display: flex;
             background-color: #f5f6fa;
+            /* 确保body不会出现滚动条 */
+        width: 90%; /* 与缩放比例对应 */
+        margin: 0 auto; /* 水平居中 */
+        transform-origin: top center;
         }
 
         /* 侧边栏样式 */
         /* 侧边栏样式 */
-.sidebar {
-    width: 220px;
-    background-color: #ffffff;
-    color: #444;
-    height: 100vh;
-    padding: 24px;
-    box-sizing: border-box;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
-    position: sticky; /* 粘性定位 */
-    top: 0; /* 距离顶部0px时开始固定 */
-    overflow-y: auto; /* 如果侧边栏内容过多，允许滚动 */
-}
+        .sidebar {
+            width: 220px;
+            background-color: #ffffff;
+            color: #444;
+            height: 100vh;
+            padding: 24px;
+            box-sizing: border-box;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+            position: sticky;
+            /* 粘性定位 */
+            top: 0;
+            /* 距离顶部0px时开始固定 */
+            overflow-y: auto;
+            /* 如果侧边栏内容过多，允许滚动 */
+        }
 
-.sidebar h2 {
-    text-align: center;
-    margin-bottom: 32px;
-    font-size: 20px;
-    color: #2563eb;
-    font-weight: 600;
-    letter-spacing: -0.5px;
-}
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 32px;
+            font-size: 20px;
+            color: #2563eb;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-.sidebar ul li {
-    margin: 8px 0;
-}
+        .sidebar ul li {
+            margin: 8px 0;
+        }
 
-.sidebar ul li a {
-    color: #444;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    padding: 12px 16px;
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    font-weight: 500;
-}
+        .sidebar ul li a {
+            color: #444;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+        }
 
-.sidebar ul li a:hover {
-    background-color: #f8faff;
-    color: #2563eb;
-    transform: translateX(4px);
-}
+        .sidebar ul li a:hover {
+            background-color: #f8faff;
+            color: #2563eb;
+            transform: translateX(4px);
+        }
 
-.sidebar ul li a.active {
-    background-color: #f0f5ff;
-    color: #2563eb;
-    font-weight: 500;
-}
+        .sidebar ul li a.active {
+            background-color: #f0f5ff;
+            color: #2563eb;
+            font-weight: 500;
+        }
 
-.sidebar ul li a i {
-    margin-right: 12px;
-    font-size: 18px;
-}
+        .sidebar ul li a i {
+            margin-right: 12px;
+            font-size: 18px;
+        }
 
 
         /* 内容区域样式 */
         .content {
-    flex-grow: 1;
-    padding: 32px;
-    background-color: #fafafa;
-}
+            flex-grow: 1;
+            padding: 32px;
+            background-color: #fafafa;
+        }
 
-.content h1 {
-    color: #2563ebe3;
-    margin-bottom: 24px;
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: -0.5px;
-    /* 新增的样式 */
-    position: relative;
-    padding-left: 12px; /* 根据你的需求调整左边距 */
-}
+        .content h1 {
+            color: #2563ebe3;
+            margin-bottom: 24px;
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: -0.5px;
+            /* 新增的样式 */
+            position: relative;
+            padding-left: 12px;
+            /* 根据你的需求调整左边距 */
+        }
 
-.content h1::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px; /* 竖线宽度 */
-    height: 16px; /* 和字体大小相同 */
-    background-color: #2563ebe3; /* 使用和文字相同的颜色 */
-    border-radius: 1.5px; /* 可选：让竖线两端变圆 */
-}
+        .content h1::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            /* 竖线宽度 */
+            height: 16px;
+            /* 和字体大小相同 */
+            background-color: #2563ebe3;
+            /* 使用和文字相同的颜色 */
+            border-radius: 1.5px;
+            /* 可选：让竖线两端变圆 */
+        }
 
-.content p {
-    color: #666;
-    line-height: 1.7;
-}
+        .content p {
+            color: #666;
+            line-height: 1.7;
+        }
 
         /* 内容区域隐藏/显示 */
         .content-section {
@@ -124,299 +148,299 @@
         }
 
         /* 仪表盘统计卡片样式 */
-.dashboard .dashboard-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin-bottom: 32px;
-}
+        .dashboard .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
 
-.dashboard-card {
-    background-color: #ffffff;
-    padding: 28px;
-    border-radius: 16px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    position: relative;
-    overflow: hidden;
-}
+        .dashboard-card {
+            background-color: #ffffff;
+            padding: 28px;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
 
-.dashboard-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-/*     height: 4px; */
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
+        .dashboard-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            /*     height: 4px; */
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-.dashboard-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-}
+        .dashboard-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+        }
 
-.dashboard-card:hover::before {
-    opacity: 1;
-}
+        .dashboard-card:hover::before {
+            opacity: 1;
+        }
 
-.dashboard-card h3 {
-    margin: 0;
-    font-size: 16px;
-    color: #666;
-    font-weight: 400;
-}
+        .dashboard-card h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #666;
+            font-weight: 400;
+        }
 
-.dashboard-card p {
-    margin: 16px 0 0;
-    font-size: 32px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 600;
-}
+        .dashboard-card p {
+            margin: 16px 0 0;
+            font-size: 32px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+
         /* 上传区域样式 */
- .upload-section {
-    background-color: #ffffff;
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
-    margin-bottom: 24px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-}
+        .upload-section {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+            margin-bottom: 24px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
 
-.upload-section .upload-box input[type="file"] {
-    display: none;
-}
-        
-.upload-section .upload-box {
-    border: 2px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 40px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
+        .upload-section .upload-box input[type="file"] {
+            display: none;
+        }
 
-.upload-section .upload-box.dragover {
-    background-color: #f8faff;
-    border-color: #2563eb;
-}
+        .upload-section .upload-box {
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
 
-.upload-section .upload-box i {
-    font-size: 32px;
-    color: #2563eb;
-    margin-bottom: 16px;
-}
+        .upload-section .upload-box.dragover {
+            background-color: #f8faff;
+            border-color: #2563eb;
+        }
 
-.upload-section .upload-box p {
-    margin: 0;
-    color: #666;
-    font-size: 15px;
-}
+        .upload-section .upload-box i {
+            font-size: 32px;
+            color: #2563eb;
+            margin-bottom: 16px;
+        }
 
-.upload-section .upload-box .file-info {
-    margin-top: 12px;
-    font-size: 14px;
-    color: #2563eb;
-}
+        .upload-section .upload-box p {
+            margin: 0;
+            color: #666;
+            font-size: 15px;
+        }
 
-.upload-section .delimiter-input {
-    margin-top: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-}
+        .upload-section .upload-box .file-info {
+            margin-top: 12px;
+            font-size: 14px;
+            color: #2563eb;
+        }
 
-.upload-section .delimiter-input input[type="text"] {
-    padding: 12px 16px;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    width: 200px;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    background-color: #f9fafb;
-}
+        .upload-section .delimiter-input {
+            margin-top: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
 
-.upload-section .delimiter-input input[type="text"]:focus {
-    border-color: #2563eb;
-    outline: none;
-    background-color: #ffffff;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
-}
+        .upload-section .delimiter-input input[type="text"] {
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            width: 200px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background-color: #f9fafb;
+        }
 
-.upload-section .delimiter-input button {
-    padding: 12px 24px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 14px;
-}
+        .upload-section .delimiter-input input[type="text"]:focus {
+            border-color: #2563eb;
+            outline: none;
+            background-color: #ffffff;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+        }
 
-.upload-section .delimiter-input button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
+        .upload-section .delimiter-input button {
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+        }
 
-/* Loading 样式 */
-.loading-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-    backdrop-filter: blur(4px);
-}
+        .upload-section .delimiter-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
 
-.loading-spinner {
-    border: 3px solid #f3f3f3;
-    border-top: 3px solid #2563eb;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 0.8s linear infinite;
-}
+        /* Loading 样式 */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .loading-spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #2563eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 0.8s linear infinite;
+        }
 
         /* 表格样式 */
- .email-table,
-.mail-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 24px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
-    border: 1px solid rgba(0, 0, 0, 0.03);
-}
+        .email-table,
+        .mail-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 24px;
+            background-color: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
 
-.email-table th,
-.email-table td,
-.mail-table th,
-.mail-table td {
-    padding: 16px 20px;
-    text-align: left;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-    font-size: 14px;
-    color: #444;
-}
+        .email-table th,
+        .email-table td,
+        .mail-table th,
+        .mail-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+            font-size: 14px;
+            color: #444;
+        }
 
-.email-table th,
-.mail-table th {
-    background-color: #f8faff;
-    color: #2563ebd4;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-}
+        .email-table th,
+        .mail-table th {
+            background-color: #f8faff;
+            color: #2563ebd4;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+        }
 
-.email-table tr:hover,
-.mail-table tr:hover {
-    background-color: #f8faff;
-}
+        .email-table tr:hover,
+        .mail-table tr:hover {
+            background-color: #f8faff;
+        }
 
-.email-table td,
-.mail-table td {
-    word-wrap: break-word;
-    transition: all 0.3s ease;
-}
+        .email-table td,
+        .mail-table td {
+            word-wrap: break-word;
+            transition: all 0.3s ease;
+        }
 
-.email-table .refresh-token {
-    max-width: 150px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: #666;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-family: monospace;
-}
+        .email-table .refresh-token {
+            max-width: 150px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: #666;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
 
-.email-table .actions,
-.mail-table .actions {
-    white-space: nowrap;
-    text-align: right;
-}
+        .email-table .actions,
+        .mail-table .actions {
+            white-space: nowrap;
+            text-align: right;
+        }
 
-.email-table .actions button,
-.mail-table .actions button {
-    padding: 8px 16px;
-    margin-right: 8px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 13px;
-    transition: all 0.3s ease;
-    font-weight: 500;
-}
+        .email-table .actions button,
+        .mail-table .actions button {
+            padding: 8px 16px;
+            margin-right: 8px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
 
-.email-table .actions button.view,
-.mail-table .actions button.view {
-    background-color: #f0f5ff;
-    color: #2563eb;
-}
+        .email-table .actions button.view,
+        .mail-table .actions button.view {
+            background-color: #f0f5ff;
+            color: #2563eb;
+        }
 
-.email-table .actions button.delete,
-.mail-table .actions button.delete {
-    background-color: #fef2f2;
-    color: #dc2626;
-}
+        .email-table .actions button.delete,
+        .mail-table .actions button.delete {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
 
-.email-table .actions button:hover,
-.mail-table .actions button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+        .email-table .actions button:hover,
+        .mail-table .actions button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
         /* 分页样式 */
-.pagination {
-    margin-top: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-}
+        .pagination {
+            margin-top: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
 
-.pagination button {
-    padding: 10px 16px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    border-radius: 10px;
-    background-color: #ffffff;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    font-weight: 500;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-}
+        .pagination button {
+            padding: 10px 16px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            border-radius: 10px;
+            background-color: #ffffff;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+        }
 
-.pagination button.active {
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    color: #ffffff;
-    border: none;
-}
+        .pagination button.active {
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            color: #ffffff;
+            border: none;
+        }
 
-.pagination button:hover:not(.active) {
-    background-color: #f8faff;
-    color: #2563eb;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+        .pagination button:hover:not(.active) {
+            background-color: #f8faff;
+            color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
 
         /* 无数据提示 */
         .no-data {
@@ -427,60 +451,60 @@
         }
 
         /* 模态框样式 */
- .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(4px);
-}
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.2);
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(4px);
+        }
 
-.modal-content {
-    background-color: #ffffff;
-    padding: 32px;
-    border-radius: 16px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    max-width: 480px;
-    width: 100%;
-    text-align: center;
-    position: relative;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-}
+        .modal-content {
+            background-color: #ffffff;
+            padding: 32px;
+            border-radius: 16px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
 
-.modal-content h3 {
-    margin-top: 0;
-    color: #333;
-    font-size: 20px;
-    font-weight: 500;
-}
+        .modal-content h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+            font-weight: 500;
+        }
 
-.modal-content p {
-    color: #666;
-    line-height: 1.7;
-}
+        .modal-content p {
+            color: #666;
+            line-height: 1.7;
+        }
 
-.modal-content button {
-    padding: 12px 24px;
-    background: linear-gradient(90deg, #2563eb, #60a5fa);
-    color: #ffffff;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    font-size: 14px;
-    margin-top: 24px;
-}
+        .modal-content button {
+            padding: 12px 24px;
+            background: linear-gradient(90deg, #2563eb, #60a5fa);
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 14px;
+            margin-top: 24px;
+        }
 
-.modal-content button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
+        .modal-content button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
 
         /* 邮件详情模态框样式 */
         .mail-modal {
@@ -558,25 +582,33 @@
             animation: spin 1s linear infinite;
         }
 
-/* 动画效果 */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.content-section {
-    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .content-section {
+            animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .email-handel {
             display: flex;
             align-items: center;
@@ -627,6 +659,121 @@
             transition: border-color 0.3s ease;
             margin-left: 10px;
         }
+
+        /* 移动端响应式优化 */
+        @media screen and (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .sidebar h2 {
+                margin-bottom: 16px;
+            }
+
+            .sidebar ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .sidebar ul li {
+                margin: 0;
+            }
+
+            .sidebar ul li a {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+
+            .content {
+                padding: 16px;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .email-table,
+            .mail-table {
+                display: block;
+                overflow-x: auto;
+            }
+
+            .upload-section .delimiter-input {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .upload-section .delimiter-input input,
+            .upload-section .delimiter-input button {
+                width: 100%;
+                margin-top: 8px;
+                margin-left: 0;
+            }
+
+            .pagination-section {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            #items-per-page {
+                margin-left: 0;
+            }
+
+            /* 模态框移动端优化 */
+            .modal-content,
+            .mail-modal-content {
+                width: 90%;
+                padding: 16px;
+            }
+        }
+
+        /* 小屏幕设备特别优化 */
+        @media screen and (max-width: 480px) {
+            .sidebar ul li a i {
+                margin-right: 6px;
+            }
+
+            .email-table th,
+            .email-table td,
+            .mail-table th,
+            .mail-table td {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .email-table .actions button,
+            .mail-table .actions button {
+                padding: 6px 10px;
+                margin-right: 4px;
+                font-size: 12px;
+            }
+
+            .upload-box {
+                padding: 20px !important;
+            }
+        }
+
+        /* 横屏模式优化 */
+        @media screen and (max-width: 1024px) and (orientation: landscape) {
+            .sidebar {
+                width: 180px;
+                padding: 16px 12px;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
     </style>
     <!-- 引入Font Awesome图标库 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -642,9 +789,11 @@
     <div class="sidebar">
         <h2>邮箱系统</h2>
         <ul>
-            <li><a href="#" data-target="dashboard" class="active"><i class="fa-regular fa-font-awesome"></i>仪表盘</a></li>
+            <li><a href="#" data-target="dashboard" class="active"><i class="fa-regular fa-font-awesome"></i>仪表盘</a>
+            </li>
             <li><a href="#" data-target="emails"><i class="fa-regular fa-clipboard"></i>邮箱管理</a></li>
-            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i class="fa-regular fa-chess-queen"></i>购买邮箱</a></li>
+            <li><a href="https://www.nineemail.com" target="_blank" class="external-link"><i
+                        class="fa-regular fa-chess-queen"></i>购买邮箱</a></li>
         </ul>
     </div>
 
@@ -657,7 +806,7 @@
                     <h3>账号数量</h3>
                     <p id="account-count">0</p>
                 </div>
-                
+
 
                 <div class="dashboard-card" style="margin-top: 20px;">
                     <h3>使用提示</h3>
@@ -666,7 +815,7 @@
                     <p style="font-size: 18px;">九邮发卡网：www.nineemail.com</p>
                 </div>
 
-                
+
             </div>
         </div>
 
@@ -1163,85 +1312,85 @@
         // }
 
         // 导入邮箱功能
-function importEmails() {
-    const delimiter = document.getElementById('delimiter').value.trim();
-    const fileInput = document.getElementById('file-input');
-    if (!delimiter) {
-        showModal('错误', '请输入分隔符！');
-        return;
-    }
-    if (fileInput.files.length === 0) {
-        showModal('错误', '请选择文件！');
-        return;
-    }
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-        const content = e.target.result;
-        const lines = content.split('\n'); // 按行分割
-        
-        // 验证邮箱格式 - 只检查前5行或全部行（如果不足5行）
-        const linesToCheck = Math.min(5, lines.length);
-        for (let i = 0; i < linesToCheck; i++) {
-            if (!lines[i].trim()) continue; // 跳过空行
-            
-            const fields = lines[i].split(delimiter);
-            if (fields.length < 1) continue;
-            
-            const email = fields[0].trim();
-            // 提取邮箱前缀
-            const match = email.match(/^([^@]+)@/);
-            if (!match) {
-                showModal('错误', '邮箱格式不正确！');
+        function importEmails() {
+            const delimiter = document.getElementById('delimiter').value.trim();
+            const fileInput = document.getElementById('file-input');
+            if (!delimiter) {
+                showModal('错误', '请输入分隔符！');
                 return;
             }
-            
-            const prefix = match[1];
-            if (prefix.length < 6) {
-                showModal('错误', '邮箱前缀长度不足6位！');
+            if (fileInput.files.length === 0) {
+                showModal('错误', '请选择文件！');
                 return;
             }
-            
-            
-            const last6 = prefix.substring(prefix.length - 6);
-            
-            
-            const pattern1 = /^\d{5}[a-zA-Z]$/;
-            const pattern2 = /^[a-zA-Z]\d{4}[a-zA-Z]$/;
-            
-            if (!pattern1.test(last6) && !pattern2.test(last6)) {
-                showModal('错误', '请使用九邮邮箱！可在本页左侧点击购买邮箱');
-                return;
-            }
-        }
-        
-        // 验证通过，继续原有逻辑
-        const data = JSON.parse(localStorage.getItem('emailData')) || [];
-        let importedCount = 0; // 用于计算实际导入的数量
-        // 解析每一行
-        lines.forEach(line => {
-            if (!line.trim()) return; // 跳过空行
-            
-            const fields = line.split(delimiter); // 按用户输入的分隔符分割
-            if (fields.length >= 4) { // 确保有 4 个字段
-                const email = fields[0].trim();
-                const password = fields[1].trim();
-                const clientId = fields[2].trim();
-                const refreshToken = fields[3].trim();
-                if (email && password && clientId && refreshToken) {
-                    data.push({ email, password, clientId, refreshToken });
-                    importedCount++; // 成功导入一条数据
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const content = e.target.result;
+                const lines = content.split('\n'); // 按行分割
+
+                // 验证邮箱格式 - 只检查前5行或全部行（如果不足5行）
+                const linesToCheck = Math.min(5, lines.length);
+                for (let i = 0; i < linesToCheck; i++) {
+                    if (!lines[i].trim()) continue; // 跳过空行
+
+                    const fields = lines[i].split(delimiter);
+                    if (fields.length < 1) continue;
+
+                    const email = fields[0].trim();
+                    // 提取邮箱前缀
+                    const match = email.match(/^([^@]+)@/);
+                    if (!match) {
+                        showModal('错误', '邮箱格式不正确！');
+                        return;
+                    }
+
+                    const prefix = match[1];
+                    if (prefix.length < 6) {
+                        showModal('错误', '邮箱前缀长度不足6位！');
+                        return;
+                    }
+
+
+                    const last6 = prefix.substring(prefix.length - 6);
+
+
+                    const pattern1 = /^\d{5}[a-zA-Z]$/;
+                    const pattern2 = /^[a-zA-Z]\d{4}[a-zA-Z]$/;
+
+                    if (!pattern1.test(last6) && !pattern2.test(last6)) {
+                        showModal('错误', '请使用九邮邮箱！可在本页左侧点击购买邮箱');
+                        return;
+                    }
                 }
-            }
-        });
-        // 保存到 localStorage
-        localStorage.setItem('emailData', JSON.stringify(data));
-        // 重新加载数据
-        loadData();
-        showModal('导入成功', `成功导入 ${importedCount} 条数据！`);
-    };
-    reader.readAsText(file);
-}
+
+                // 验证通过，继续原有逻辑
+                const data = JSON.parse(localStorage.getItem('emailData')) || [];
+                let importedCount = 0; // 用于计算实际导入的数量
+                // 解析每一行
+                lines.forEach(line => {
+                    if (!line.trim()) return; // 跳过空行
+
+                    const fields = line.split(delimiter); // 按用户输入的分隔符分割
+                    if (fields.length >= 4) { // 确保有 4 个字段
+                        const email = fields[0].trim();
+                        const password = fields[1].trim();
+                        const clientId = fields[2].trim();
+                        const refreshToken = fields[3].trim();
+                        if (email && password && clientId && refreshToken) {
+                            data.push({ email, password, clientId, refreshToken });
+                            importedCount++; // 成功导入一条数据
+                        }
+                    }
+                });
+                // 保存到 localStorage
+                localStorage.setItem('emailData', JSON.stringify(data));
+                // 重新加载数据
+                loadData();
+                showModal('导入成功', `成功导入 ${importedCount} 条数据！`);
+            };
+            reader.readAsText(file);
+        }
 
         // 拖拽文件上传逻辑
         const uploadBox = document.getElementById('upload-box');
