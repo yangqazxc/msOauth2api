@@ -7,14 +7,57 @@
     <title>九邮 - 邮箱系统</title>
     <link rel="icon" href="/favicon.png">
     <style>
+ /* 更新的页面缩放方案 */
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        background-color: #f5f6fa;
+        zoom: 0.9; /* 使用zoom属性代替transform */
+        -moz-transform: scale(0.9); /* Firefox不支持zoom */
+        -moz-transform-origin: 0 0;
+    }
+    /* 侧边栏样式修复 */
+    .sidebar {
+        width: 220px;
+        background-color: #ffffff;
+        color: #444;
+        height: 100vh;
+        padding: 24px;
+        box-sizing: border-box;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.03);
+        position: fixed; /* 改为fixed定位 */
+        left: 0;
+        top: 0;
+        overflow-y: auto;
+        z-index: 100;
+    }
+
+    /* 内容区域样式修复 */
+    .content {
+        flex-grow: 1;
+        padding: 32px;
+        background-color: #fafafa;
+        margin-left: 220px; /* 与sidebar宽度相同 */
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    
         /* 基础样式 */
-        body {
+        /* body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
             background-color: #f5f6fa;
-        }
+        } */
 
         /* 侧边栏样式 */
         /* 侧边栏样式 */
@@ -648,12 +691,14 @@
         @media screen and (max-width: 768px) {
             body {
                 flex-direction: column;
+                zoom: 1; /* 移动端不缩放 */
+            -moz-transform: none;
             }
 
             .sidebar {
                 width: 100%;
                 height: auto;
-                position: relative;
+                /* position: relative; */
                 padding: 12px;
                 margin-bottom: 10px;
             }
@@ -679,6 +724,7 @@
             }
 
             .content {
+                margin-left: 0;
                 padding: 16px;
             }
 
