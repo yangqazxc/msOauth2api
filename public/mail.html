@@ -629,66 +629,110 @@
         }
 
 
- /* 响应式样式 - 移动端适配 */
+/* 响应式样式 - 移动端适配 */
     @media screen and (max-width: 768px) {
         body {
             flex-direction: column;
         }
         
+        /* 导航栏优化设计 */
         .sidebar {
             width: 100%;
             height: auto;
             position: relative;
-            padding: 12px;
+            padding: 16px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .sidebar h2 {
             margin-bottom: 16px;
             font-size: 18px;
+            text-align: left;
         }
         
         .sidebar ul {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            gap: 10px;
+            justify-content: flex-start;
+            -webkit-overflow-scrolling: touch; /* 流畅滚动 */
+            scrollbar-width: none; /* 火狐隐藏滚动条 */
+        }
+        
+        /* 隐藏WebKit浏览器的滚动条 */
+        .sidebar ul::-webkit-scrollbar {
+            display: none;
         }
         
         .sidebar ul li {
             margin: 0;
+            flex: 0 0 auto;
         }
         
         .sidebar ul li a {
-            padding: 8px 12px;
+            padding: 10px 18px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
             font-size: 14px;
+            background-color: #f8faff;
+            border-radius: 50px; /* 药丸形状按钮 */
+            transition: all 0.3s ease;
         }
         
+        .sidebar ul li a i {
+            margin-right: 8px;
+        }
+        
+        .sidebar ul li a.active {
+            background-color: #2563eb;
+            color: white;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+        }
+        
+        .sidebar ul li a:hover:not(.active) {
+            background-color: #f0f5ff;
+            transform: translateY(-2px);
+        }
+        
+        /* 内容区域调整 */
         .content {
-            padding: 16px;
+            padding: 20px 16px;
         }
         
+        /* 表格和其他组件的响应式处理 */
         .dashboard .dashboard-cards {
             grid-template-columns: 1fr;
         }
         
-        /* 表格容器添加水平滚动 */
+        /* 上传区域优化 */
+        .upload-section {
+            padding: 20px;
+        }
+        
+        .upload-section .upload-box {
+            padding: 30px 20px;
+        }
+        
         .upload-section .delimiter-input {
             flex-direction: column;
             align-items: flex-start;
+            gap: 10px;
         }
         
         .upload-section .delimiter-input input[type="text"] {
             width: 100%;
-            margin-bottom: 10px;
         }
         
         .upload-section .delimiter-input button {
             width: 100%;
-            margin-bottom: 10px;
+            height: 48px; /* 增加按钮高度，更容易点击 */
         }
         
-        /* 表格响应式处理 - 重新设计为卡片式布局 */
+        /* 表格响应式处理 - 卡片式布局 */
         .email-table {
             display: block;
             border-radius: 0;
@@ -713,13 +757,13 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(0, 0, 0, 0.03);
-            padding: 12px;
+            padding: 16px;
         }
         
         .email-table td {
             display: block;
             text-align: left;
-            padding: 8px 12px;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
         
@@ -740,29 +784,38 @@
             color: #2563eb;
         }
         
-        /* 操作按钮居中显示 */
+        /* 操作按钮优化 */
         .email-table .actions {
-            text-align: center;
-            padding-top: 12px;
             display: flex;
             flex-wrap: wrap;
-            justify-content: center;
             gap: 8px;
+            justify-content: flex-start;
+            padding-top: 12px;
         }
         
         .email-table .actions button {
+            flex: 1;
             margin: 0;
-            flex-grow: 1;
-            min-width: 80px;
+            min-width: 0;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            border-radius: 8px;
         }
         
-        /* 修改复选框样式 */
+        /* 复选框样式 */
         .email-table td:first-child {
-            padding: 8px;
-            text-align: left;
+            padding-top: 0;
         }
         
-        /* 邮件列表表格也采用相同的卡片式布局 */
+        .email-table td:first-child input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        /* 邮件列表表格卡片式布局 */
         .mail-table {
             display: block;
             border-radius: 0;
@@ -787,21 +840,23 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(0, 0, 0, 0.03);
-            padding: 12px;
+            padding: 16px;
         }
         
         .mail-table td {
             display: block;
             text-align: left;
-            padding: 8px 12px;
+            padding: 8px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
         
         .mail-table td:last-child {
             border-bottom: none;
-            text-align: center;
+            text-align: left;
+            padding-top: 12px;
         }
         
+        /* 邮件列表标签 */
         .mail-table td:nth-child(1)::before {
             content: "发件人: ";
             font-weight: 500;
@@ -820,9 +875,11 @@
             color: #2563eb;
         }
         
+        /* 分页控件优化 */
         .pagination-section {
             flex-direction: column;
             gap: 12px;
+            align-items: center;
         }
         
         #items-per-page {
@@ -830,48 +887,67 @@
             width: 150px;
         }
         
-        /* 模态框调整 */
-        .modal-content {
-            width: 85%;
-            max-width: 320px;
-            padding: 20px;
+        .pagination {
+            flex-wrap: wrap;
+            justify-content: center;
         }
         
-        .mail-modal-content {
-            width: 85%;
-            max-width: 320px;
-            padding: 16px;
+        .pagination button {
+            min-width: 40px;
+            height: 40px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }
     
     /* 特小屏幕设备额外优化 */
     @media screen and (max-width: 480px) {
-        .sidebar ul {
-            flex-direction: column;
-            align-items: center;
+        /* 头部显示固定 */
+        .sidebar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
         }
         
-        .sidebar ul li {
-            width: 100%;
+        /* 导航排列紧凑 */
+        .sidebar h2 {
+            font-size: 16px;
+            margin-bottom: 12px;
         }
         
         .sidebar ul li a {
-            justify-content: center;
+            padding: 8px 14px;
+            font-size: 13px;
+        }
+        
+        /* 操作按钮在小屏幕上垂直排列 */
+        .email-table .actions {
+            flex-direction: column;
         }
         
         .email-table .actions button,
         .mail-table .actions button {
-            padding: 8px 12px;
-            font-size: 12px;
             width: 100%;
+            margin-bottom: 4px;
         }
         
+        /* 上传区域更紧凑 */
         .upload-section {
-            padding: 20px 16px;
+            padding: 16px;
         }
         
         .upload-section .upload-box {
-            padding: 24px 16px;
+            padding: 20px 12px;
+        }
+        
+        /* 模态框调整 */
+        .modal-content {
+            padding: 20px 16px;
+            width: 90%;
         }
     }
                 
