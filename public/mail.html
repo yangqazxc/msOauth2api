@@ -629,7 +629,8 @@
         }
 
 
-            @media screen and (max-width: 768px) {
+ /* 响应式样式 - 移动端适配 */
+    @media screen and (max-width: 768px) {
         body {
             flex-direction: column;
         }
@@ -671,6 +672,7 @@
             grid-template-columns: 1fr;
         }
         
+        /* 表格容器添加水平滚动 */
         .upload-section .delimiter-input {
             flex-direction: column;
             align-items: flex-start;
@@ -679,55 +681,166 @@
         .upload-section .delimiter-input input[type="text"] {
             width: 100%;
             margin-bottom: 10px;
-            margin-left: -18px;
         }
         
         .upload-section .delimiter-input button {
             width: 100%;
             margin-bottom: 10px;
-/*             margin-left: 10px; */
         }
         
-        .email-table, .mail-table {
-            font-size: 12px;
+        /* 表格响应式处理 - 重新设计为卡片式布局 */
+        .email-table {
+            display: block;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            background-color: transparent;
         }
         
-        .email-table th, .email-table td, 
-        .mail-table th, .mail-table td {
-            padding: 10px 8px;
+        .email-table thead {
+            display: none; /* 隐藏表头 */
         }
         
-        .email-handel {
-            flex-direction: column;
+        .email-table tbody {
+            display: block;
+            width: 100%;
         }
         
-        .pagination button {
+        .email-table tbody tr {
+            display: block;
+            background-color: #ffffff;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 12px;
+        }
+        
+        .email-table td {
+            display: block;
+            text-align: left;
             padding: 8px 12px;
-            font-size: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
         }
         
+        .email-table td:last-child {
+            border-bottom: none;
+        }
+        
+        /* 为移动端添加标签 */
+        .email-table td:nth-child(2)::before {
+            content: "Email: ";
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        .email-table td:nth-child(3)::before {
+            content: "Password: ";
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        /* 操作按钮居中显示 */
+        .email-table .actions {
+            text-align: center;
+            padding-top: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .email-table .actions button {
+            margin: 0;
+            flex-grow: 1;
+            min-width: 80px;
+        }
+        
+        /* 修改复选框样式 */
+        .email-table td:first-child {
+            padding: 8px;
+            text-align: left;
+        }
+        
+        /* 邮件列表表格也采用相同的卡片式布局 */
+        .mail-table {
+            display: block;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            background-color: transparent;
+        }
+        
+        .mail-table thead {
+            display: none;
+        }
+        
+        .mail-table tbody {
+            display: block;
+            width: 100%;
+        }
+        
+        .mail-table tbody tr {
+            display: block;
+            background-color: #ffffff;
+            margin-bottom: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            padding: 12px;
+        }
+        
+        .mail-table td {
+            display: block;
+            text-align: left;
+            padding: 8px 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+        }
+        
+        .mail-table td:last-child {
+            border-bottom: none;
+            text-align: center;
+        }
+        
+        .mail-table td:nth-child(1)::before {
+            content: "发件人: ";
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        .mail-table td:nth-child(2)::before {
+            content: "主题: ";
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        .mail-table td:nth-child(3)::before {
+            content: "日期: ";
+            font-weight: 500;
+            color: #2563eb;
+        }
+        
+        .pagination-section {
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        #items-per-page {
+            margin-left: 0;
+            width: 150px;
+        }
+        
+        /* 模态框调整 */
         .modal-content {
-            width: 90%;
+            width: 85%;
+            max-width: 320px;
             padding: 20px;
         }
-
-
-        /* 处理表格在移动端的显示 */
-        .email-table th:nth-child(4),
-        .email-table td:nth-child(4),
-        .email-table th:nth-child(5),
-        .email-table td:nth-child(5) {
-            display: none; /* 隐藏不重要的列 */
-        }
         
-        /* 表格操作按钮优化 */
-        .email-table .actions button,
-        .mail-table .actions button {
-            padding: 6px 10px;
-            font-size: 12px;
-            margin-right: 4px;
-            margin-bottom: 4px;
-            display: inline-block;
+        .mail-modal-content {
+            width: 85%;
+            max-width: 320px;
+            padding: 16px;
         }
     }
     
@@ -746,13 +859,19 @@
             justify-content: center;
         }
         
-        .pagination-section {
-            flex-direction: column;
-            gap: 10px;
+        .email-table .actions button,
+        .mail-table .actions button {
+            padding: 8px 12px;
+            font-size: 12px;
+            width: 100%;
         }
         
-        #items-per-page {
-            margin-left: 0;
+        .upload-section {
+            padding: 20px 16px;
+        }
+        
+        .upload-section .upload-box {
+            padding: 24px 16px;
         }
     }
                 
