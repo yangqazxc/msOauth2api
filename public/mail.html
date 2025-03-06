@@ -711,6 +711,50 @@
             padding: 20px;
         }
 
+
+        /* 处理表格在移动端的显示 */
+        .email-table th:nth-child(4),
+        .email-table td:nth-child(4),
+        .email-table th:nth-child(5),
+        .email-table td:nth-child(5) {
+            display: none; /* 隐藏不重要的列 */
+        }
+        
+        /* 表格操作按钮优化 */
+        .email-table .actions button,
+        .mail-table .actions button {
+            padding: 6px 10px;
+            font-size: 12px;
+            margin-right: 4px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+    }
+    
+    /* 特小屏幕设备额外优化 */
+    @media screen and (max-width: 480px) {
+        .sidebar ul {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .sidebar ul li {
+            width: 100%;
+        }
+        
+        .sidebar ul li a {
+            justify-content: center;
+        }
+        
+        .pagination-section {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        #items-per-page {
+            margin-left: 0;
+        }
+    }
                 
     </style>
     <!-- 引入Font Awesome图标库 -->
